@@ -27,4 +27,6 @@ upload the search document to the couchDB instance
 - remove the generated data.js file after build
 - use Francesco end to end test
 - integrate couchdb view uploading with grunt
+- remove view from Frontend document in db
 
+add "undefined" as value to search if there is no value
