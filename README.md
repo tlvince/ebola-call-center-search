@@ -11,3 +11,20 @@ The project uses the following projects:
 
 
 
+### Deploy
+
+Build is country dependant
+
+```shell
+grunt build:[gin|sl|lr]
+```
+
+upload the search document to the couchDB instance
+
+
+###  Todo
+
+- remove the generated data.js file after build
+- use Francesco end to end test
+- integrate couchdb view uploading with grunt
+
