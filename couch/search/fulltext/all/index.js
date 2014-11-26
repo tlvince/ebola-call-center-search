@@ -26,6 +26,15 @@ function(doc) {
       var lastChar = key[key.length - 1];
       return parseInt(lastChar, 10) - 1;
     };
+    this.hasDateType = function(){
+      return present(['createdOn']); };
+    this.luceneType = function() {
+      var type = "string";
+      if (this.hasDateType()) {
+        type = "date";
+      }
+      return type;
+    };
   }
 
   var ret = new Document();
@@ -48,14 +57,22 @@ function(doc) {
                 value = lookup.name(field.locationDepth(), value);
               }
               value = tokenizer.allNGramPhrase(value, 2).join(' ');
+            } else if (field.hasDateType()) {
+              value = new Date(value);
             }
-            ret.add(value, {field: key});
-            ret.add(value);
+            ret.add(value, {"field": key, "type": field.luceneType()});
+            ret.add(value, {"type": field.luceneType()});
           }  else {
             return null;
           }
           break;
-        default: ret.add(obj[key], {field: key});
+        default:
+          value = obj[key];
+          field = new Field(key);
+          if (field.hasDateType()) {
+            value = new Date(value);
+          }
+          ret.add(value, {field: key, "type": field.luceneType()});
           break;
         }
       }
