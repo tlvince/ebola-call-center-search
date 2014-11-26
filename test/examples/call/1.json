@@ -1,0 +1,55 @@
+{
+    "_id": "SOMMEID5-SOME-SOME-SOME-SOMEID",
+    "_rev": "1-SOMEIDREVIEW",
+    "contact": {
+        "address": "Some Address 1",
+        "adminDivision1": "F",
+        "adminDivision2": "DB",
+        "callDetails": "des informations  de preventios de la fievre ebola",
+        "callNature": "health information",
+        "createdBy": "some",
+        "createdOn": "2011-11-08T21:22:10.083Z",
+        "doc_type": "contact",
+        "isPrankCall": true,
+        "name": "some Name",
+        "phoneNo": "350812561",
+        "requestedHealthInfo": {
+            "common": {
+                "prevention": true
+            }
+        }
+    },
+    "doc_type": "case",
+    "patient": {
+        "address": "some address 1",
+        "adminDivision1": "C",
+        "adminDivision2": "DB",
+        "age": "24",
+        "doc_type": "patient",
+        "gender": "F",
+        "patientName": "Some Name",
+        "phoneNo": "123413241",
+        "status": "alive",
+        "symptoms": {
+            "common": {
+                "abdominalPain": false,
+                "bleeding": false,
+                "diarrhea": false,
+                "difficultySwallowing": false,
+                "fever": false,
+                "headache": false,
+                "hiccup": false,
+                "muscleOrJointPain": false,
+                "rash": false,
+                "vomiting": false,
+                "weakness": false
+            },
+            "other": "some some les risques de prevention de la fievre ebola"
+        }
+    },
+    "referenceNo": "some-reference",
+    "response": {
+        "caseStatus": "open",
+        "doc_type": "response"
+    }
+}

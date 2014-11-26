@@ -3,6 +3,7 @@ env:
   mocha: true
 globals:
   Document: true
+  Field: true
   require: true
   locations: true
   tokenizer: true

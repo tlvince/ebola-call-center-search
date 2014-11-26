@@ -82,9 +82,9 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', [
-      'test',
-      'eslint',
       'build',
-      'usebanner:dist'
+      'usebanner:dist',
+      'test',
+      'eslint'
   ]);
 };
