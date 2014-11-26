@@ -50,12 +50,12 @@ function index (doc) {
               }
               value = tokenizer.allNGramPhrase(value, 2).join(' ');
             }
-            ret.add(value);
+            ret.add(value, {field: key});
           }  else {
             return null;
           }
           break;
-        default: ret.add(obj[key]);
+        default: ret.add(obj[key], {field: key});
           break;
         }
       }
