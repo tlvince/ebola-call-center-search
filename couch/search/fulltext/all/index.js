@@ -50,6 +50,7 @@ function(doc) {
               value = tokenizer.allNGramPhrase(value, 2).join(' ');
             }
             ret.add(value, {field: key});
+            ret.add(value);
           }  else {
             return null;
           }
