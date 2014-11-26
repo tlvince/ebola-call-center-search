@@ -1,5 +1,4 @@
-'use strict';
-function index (doc) {
+function(doc) {
   // !code vendor/tokenizer/ngram.js
   // !code vendor/locations/lookup.js
 
