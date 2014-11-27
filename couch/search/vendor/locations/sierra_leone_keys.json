@@ -1,0 +1,17 @@
+{
+    "patient": {
+        "chiefdomCode": "undefined",
+        "districtCode": "undefined",
+        "provinceCode": "undefined"
+    },
+    "contact": {
+        "chiefdom_code": "undefined",
+        "district_code": "undefined",
+        "province_code": "undefined"
+    },
+    "response": {
+        "chiefdomCode": "undefined",
+        "districtCode": "undefined",
+        "provinceCode": "undefined"
+    }
+}

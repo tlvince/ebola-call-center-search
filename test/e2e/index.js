@@ -24,4 +24,16 @@ describe('index', function() {
     expected = "co on na ak kr ry con ona nak akr kry cona onak nakr akry conak onakr nakry conakr onakry conakry";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
+
+  it('indexes contact_admindivision2 as labeled location', function() {
+    var indexed = res.internal.contact_admindivision2.value;
+    expected = "co on na ak kr ry con ona nak akr kry cona onak nakr akry conak onakr nakry conakr onakry conakry";
+    assert.equal(indexed, expected, JSON.stringify(indexed));
+  });
+
+  it('indexes contact_admindivision3, which is undefined, as ngram undefined', function() {
+    var indexed = res.internal.contact_admindivision3.value;
+    expected = "undefined";
+    assert.equal(indexed, expected, JSON.stringify(indexed));
+  });
 });

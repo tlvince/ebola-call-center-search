@@ -1,0 +1,17 @@
+{
+    "contact": {
+        "adminDivision1": "undefined",
+        "adminDivision2": "undefined",
+        "adminDivision3": "undefined"
+    },
+    "patient": {
+        "adminDivision1": "undefined",
+        "adminDivision2": "undefined",
+        "adminDivision3": "undefined"
+    },
+    "response": {
+        "adminDivision1": "undefined",
+        "adminDivision2": "undefined",
+        "adminDivision3": "undefined"
+    }
+}

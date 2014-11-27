@@ -27,24 +27,27 @@ module.exports = function(grunt) {
         common: {
           options: {
             namespace: 'locations',
-            processName: function() {
+            processName: function(filename) {
+              if (filename.match(/keys/, 'gi')) {
+                return 'keys';
+              }
               return 'data';
             }
           }
         },
         sl: {
           options:  '<%= json.common.options %>',
-          src: ['./node_modules/locations/json/sierra_leone.json'],
+          src: ['./node_modules/locations/json/sierra_leone.json', 'couch/search/vendor/locations/sierra_leone_keys.json'],
           dest: 'couch/search/vendor/locations/data.js'
         },
         lr: {
           options:  '<%= json.common.options %>',
-          src: ['./node_modules/locations/json/liberia.json'],
+          src: ['./node_modules/locations/json/liberia.json', 'couch/search/vendor/locations/normalized_keys.json'],
           dest: 'couch/search/vendor/locations/data.js'
         },
         gin: {
           options:  '<%= json.common.options %>',
-          src: ['./node_modules/locations/json/guinea.json'],
+          src: ['./node_modules/locations/json/guinea.json', 'couch/search/vendor/locations/normalized_keys.json'],
           dest: 'couch/search/vendor/locations/data.js'
         }
       },
