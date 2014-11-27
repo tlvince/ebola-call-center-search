@@ -1,5 +1,5 @@
 var assert = require('assert');
-var tokenizer = require('../couch/search/vendor/tokenizer/ngram').tokenizer;
+var tokenizer = require('../couch/search/vendor/tokenizer/ngram');
 var join = function(x) { return x.join(','); };
 
 describe('allNGram', function() {

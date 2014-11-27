@@ -1,5 +1,5 @@
 var assert = require('assert');
-var lookup = require('../couch/search/vendor/locations/lookup').lookup;
+var lookup = require('../couch/search/vendor/locations/lookup');
 
 describe('lookup.name', function() {
 
