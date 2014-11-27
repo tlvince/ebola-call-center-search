@@ -87,7 +87,9 @@
        "otherPhoneNo": "666666666",
        "callNature": "suspect",
        "callDetails": "soe call details",
-       "address": "some address"
+       "address": "some address",
+       "adminDivision1": "C",
+       "adminDivision2": "CY"
    },
    "patient": {
        "doc_type": "patient",

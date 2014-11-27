@@ -73,7 +73,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', function(country) {
-    country = country || 'sl';
+    country = country || 'gin';
     grunt.task.run('json:' + country);
   });
 
