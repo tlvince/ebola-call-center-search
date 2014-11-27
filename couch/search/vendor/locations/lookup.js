@@ -1,6 +1,6 @@
 // !code vendor/locations/data.js
 
-var locations = locations || require('./data').locations;
+var locations = locations || require('./data');
 
 var lookup = {
   name: function (depth, id) {
@@ -14,5 +14,5 @@ var lookup = {
 };
 
 if( typeof(exports) === 'object' ) {
-  exports.lookup = lookup;
+  module.exports = lookup;
 }

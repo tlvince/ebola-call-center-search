@@ -1,0 +1,135 @@
+{
+   "_id": "SOME ID",
+   "_rev": "SOME REVISION NUMBER",
+   "doc_type": "case",
+   "caseId": "some case id",
+   "referenceNo": "some refernce number",
+   "response:caseStatus": "open",
+   "changeLog": [
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       },
+       {
+           "rev": "SOme Revision number",
+           "timestamp": 0,
+           "user": "test"
+       }
+   ],
+   "contact": {
+       "doc_type": "contact",
+       "createdBy": "SOME PERSON",
+       "createdOn": "2011-11-11T11:01:36.625Z",
+       "isPrankCall": false,
+       "name": "aminata kourouma",
+       "phoneNo": "777777777",
+       "otherPhoneNo": "666666666",
+       "callNature": "suspect",
+       "callDetails": "soe call details",
+       "address": "some address"
+   },
+   "patient": {
+       "doc_type": "patient",
+       "status": "alive",
+       "patientName": "some name",
+       "age": "45",
+       "gender": "M",
+       "address": "some address",
+       "phoneNo": "333333333",
+       "adminDivision1": "C",
+       "adminDivision2": "CY",
+       "symptoms": {
+           "other": "",
+           "common": {
+               "fever": false,
+               "vomiting": false,
+               "diarrhea": false,
+               "weakness": false,
+               "muscleOrJointPain": false,
+               "bleeding": false,
+               "rash": false,
+               "abdominalPain": false,
+               "difficultySwallowing": false,
+               "headache": false,
+               "hiccup": false
+           }
+       }
+   },
+   "response": {
+       "doc_type": "response",
+       "caseStatus": "open",
+       "teamName": "some name",
+       "assignedOn": "2011-19-11T10:55:41.531Z",
+       "phoneNo": "000000000",
+       "phoneNo2": "111111111",
+       "adminDivision1": "C",
+       "adminDivision2": "CY"
+   },
+   "comments": [
+       {
+           "date": 1112741636626,
+           "text": "some text"
+       }
+   ]
+}

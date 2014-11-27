@@ -36,5 +36,5 @@ var tokenizer = {
 };
 
 if( typeof(exports) === 'object' ) {
-  exports.tokenizer = tokenizer;
+  module.exports = tokenizer;
 };

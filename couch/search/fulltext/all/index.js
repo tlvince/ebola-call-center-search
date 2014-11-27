@@ -1,8 +1,14 @@
 function index(doc) {
   'use strict';
+  // couchapp imports
   // !code vendor/tokenizer/ngram.js
   // !code vendor/locations/lookup.js
   // !code vendor/fields/field.js
+  // this requires are using for test since this view cannot use commonjs modules
+
+  var Field = Field || require('../../couch/search/vendor/fields/field');
+  var lookup = lookup || require('../../couch/search/vendor/locations/lookup');
+  var tokenizer = tokenizer || require('../../couch/search/vendor/tokenizer/ngram');
 
   var ret = new Document();
   if (doc.doc_type !== 'case') {
@@ -17,8 +23,6 @@ function index(doc) {
           field = new Field(key);
           if (field.indexable()) {
             idx(obj[key], key);
-          } else {
-            return null;
           }
           break;
         case 'function': break;

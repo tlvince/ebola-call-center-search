@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           options: {
             position: 'bottom',
             banner: 'if( typeof(exports) === "object" ) {\n' +
-                    '  exports.<%=json.common.options.namespace%> = <%=json.common.options.namespace%>;\n' +
+                    '  module.exports = <%=json.common.options.namespace%>;\n' +
                     '}'
           },
           files: {

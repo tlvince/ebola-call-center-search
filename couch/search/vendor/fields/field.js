@@ -7,7 +7,7 @@
 var traverse = traverse || require('./js-traverse');
 
 // @param key {String} the couchdDB key.
-function Field(key) {
+var Field = function(key) {
   // regex template for that fields could be turned into nGrams
   var nGrammable = ['name', 'phone', 'address', 'adminDivision'];
   // regex template for some fields are not indexable
@@ -59,7 +59,7 @@ function Field(key) {
 
   // @return {Boolean} true if is of Date type
   this.hasDateType = function(){
-    return present(['createdOn']); };
+    return present(['createdOn', 'date']); };
 
   // Lucene types supported by plugin are:
   // "date, double, float, int, long, string"
@@ -96,6 +96,6 @@ function Field(key) {
   }
   }
 
-  if( typeof(exports) === 'object' ) {
-    module.exports = Field;
-  }
+if( typeof(exports) === 'object' ) {
+  module.exports = Field;
+}
