@@ -47,7 +47,10 @@ var Field = function(key) {
   // @return {Boolean}
   //location fields start with adminDivision
   this.isLocation = function() {
-    return present(['adminDivision']); };
+    return present(['adminDivision', 'chiefdomCode', 'districtCode',
+                    'provinceCode', 'chiefdom_code', 'province_code',
+                    'district_code']);
+  };
 
   // @return {Integer} in the range [0,2]
   this.locationDepth = function() {

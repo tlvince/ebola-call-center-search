@@ -12,7 +12,8 @@ function index(doc) {
 
   var ret = new Document();
   if (doc.doc_type !== 'case') {
-    return null; }
+    return null;
+  }
   // key previous key if existing undefined if not
   function idx(obj, objectKey) {
     var field, value;
@@ -34,7 +35,9 @@ function index(doc) {
               if (field.isLocation()) {
                 value = lookup.name(field.locationDepth(), value);
               }
-              value = tokenizer.allNGramPhrase(value, 2).join(' ');
+              if (value !== 'undefined') {
+                value = tokenizer.allNGramPhrase(value, 2).join(' ');
+              }
             } else if (field.hasDateType()) {
               value = new Date(value);
             }
@@ -56,6 +59,7 @@ function index(doc) {
       }
     }
   }
+  doc = lookup.addLocationKeys(doc);
   idx(doc);
   return ret;
 }
