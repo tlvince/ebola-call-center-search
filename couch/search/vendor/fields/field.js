@@ -99,6 +99,23 @@ var Field = function(key) {
   }
   }
 
+// normalization mapping
+var mapping = {
+  adminDivision1: "adminDivision1",
+  adminDivision2: "adminDivision2",
+  adminDivision3: "adminDivision3",
+  provinceCode:   "adminDivision1",
+  districtCode:   "adminDivision2",
+  chiefdomCode:   "adminDivision3",
+  province_code:  "adminDivision1",
+  district_code:  "adminDivision2",
+  chiefdom_code:  "adminDivision3"
+};
+
+Field.normalizeLocationKey = function(key) {
+  return mapping[key];
+};
+
 if( typeof(exports) === 'object' ) {
   module.exports = Field;
 }

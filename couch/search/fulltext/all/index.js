@@ -34,6 +34,7 @@ function index(doc) {
             if (field.nGrammable()) {
               if (field.isLocation()) {
                 value = lookup.name(field.locationDepth(), value);
+                field = new Field(Field.normalizeLocationKey(key));
               }
               if (value !== 'undefined') {
                 value = tokenizer.allNGramPhrase(value, 2).join(' ');
