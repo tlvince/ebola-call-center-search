@@ -4,11 +4,13 @@ function index(doc) {
   // !code vendor/tokenizer/ngram.js
   // !code vendor/locations/lookup.js
   // !code vendor/fields/field.js
+  // !code vendor/analyzers/fold_to_ascii.js
   // this requires are using for test since this view cannot use commonjs modules
 
   var Field = Field || require('../../couch/search/vendor/fields/field');
   var lookup = lookup || require('../../couch/search/vendor/locations/lookup');
   var tokenizer = tokenizer || require('../../couch/search/vendor/tokenizer/ngram');
+  var foldToASCII = foldToASCII || require('../../couch/search/vendor/analyzers/fold_to_ascii');
 
   var ret = new Document();
   if (doc.doc_type !== 'case') {
@@ -30,7 +32,7 @@ function index(doc) {
         case 'string':
           field = new Field(key);
           if (field.indexable()) {
-            value = obj[key].trim();
+            value = foldToASCII(obj[key].trim());
             if (field.nGrammable()) {
               if (field.isLocation()) {
                 value = lookup.name(field.locationDepth(), value);

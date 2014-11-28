@@ -15,7 +15,7 @@ describe('index', function() {
 
   it('indexes contact.createdOn as ngrams', function() {
     var indexed = res.internal.contact_name.value;
-    expected = "am mi in na at ta ami min ina nat ata amin mina inat nata amina minat inata aminat minata aminata ko ou ur ro ou um ma kou our uro rou oum uma kour ouro urou roum ouma kouro ourou uroum rouma kourou ouroum urouma kouroum ourouma kourouma"
+    expected = "ee ee es so om me en na am me eee ees eso som ome men ena nam ame eees eeso esom some omen mena enam name eeeso eesom esome somen omena menam ename eeesom eesome esomen somena omenam mename eeesome eesomen esomena somenam omename eeesomen eesomena esomenam somename eeesomena eesomenam esomename eeesomenam eesomename eeesomename";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 
@@ -34,6 +34,12 @@ describe('index', function() {
   it('indexes contact_admindivision3, which is undefined, as ngram undefined', function() {
     var indexed = res.internal.contact_admindivision3.value;
     expected = "undefined";
+    assert.equal(indexed, expected, JSON.stringify(indexed));
+  });
+
+  it('ascii folds', function() {
+    var indexed = res.internal.contact_name.value;
+    expected = "ee ee es so om me en na am me eee ees eso som ome men ena nam ame eees eeso esom some omen mena enam name eeeso eesom esome somen omena menam ename eeesom eesome esomen somena omenam mename eeesome eesomen esomena somenam omename eeesomen eesomena esomenam somename eeesomena eesomenam esomename eeesomenam eesomename eeesomename";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 });
