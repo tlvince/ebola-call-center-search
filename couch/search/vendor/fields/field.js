@@ -8,8 +8,9 @@ var traverse = traverse || require('./js-traverse');
 
 // @param key {String} the couchdDB key.
 var Field = function(key) {
+  var locationKeys = ['adminDivision', 'district', 'province', 'chiefdom'];
   // regex template for that fields could be turned into nGrams
-  var nGrammable = ['name', 'phone', 'address', 'adminDivision'];
+  var nGrammable = ['name', 'phone', 'address'].concat(locationKeys);
   // regex template for some fields are not indexable
   var notIndexable = ['timestamp', 'changeLog'];
 
@@ -47,9 +48,7 @@ var Field = function(key) {
   // @return {Boolean}
   //location fields start with adminDivision
   this.isLocation = function() {
-    return present(['adminDivision', 'chiefdomCode', 'districtCode',
-                    'provinceCode', 'chiefdom_code', 'province_code',
-                    'district_code']);
+    return present(locationKeys);
   };
 
   // @return {Integer} in the range [0,2]
@@ -98,23 +97,6 @@ var Field = function(key) {
     }
   }
   }
-
-// normalization mapping
-var mapping = {
-  adminDivision1: "adminDivision1",
-  adminDivision2: "adminDivision2",
-  adminDivision3: "adminDivision3",
-  provinceCode:   "adminDivision1",
-  districtCode:   "adminDivision2",
-  chiefdomCode:   "adminDivision3",
-  province_code:  "adminDivision1",
-  district_code:  "adminDivision2",
-  chiefdom_code:  "adminDivision3"
-};
-
-Field.normalizeLocationKey = function(key) {
-  return mapping[key];
-};
 
 if( typeof(exports) === 'object' ) {
   module.exports = Field;

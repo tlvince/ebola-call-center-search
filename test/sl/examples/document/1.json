@@ -1,0 +1,49 @@
+{
+   "_id": "RQQGQQOO-FAKE-FAKE-FAKE-FAKEFAKFAKE9",
+   "_rev": "12-FAKEbFAKEFAKEFAKEFAKEFAKE2fFAKE1",
+   "doc_type": "case",
+   "patient": {
+       "doc_type": "patient",
+       "patientId": "FAKEFAKEFA",
+       "patientName": "FAKEFAK",
+       "age": 0,
+       "gender": "F",
+       "address": "I DONT KNOE WHERE THE DDRESS IS",
+       "provinceCode": "S",
+       "districtCode": "1",
+       "chiefdomCode": "1-14",
+       "phoneNo": "",
+       "familyPhoneNo": "",
+       "createdBy": "FAKE",
+       "createdOn": "2014-09-20T07:43:14.893Z",
+       "modifiedBy": null,
+       "contactId": "FAKEFAKEFA",
+       "patientStatus": null,
+       "modifiedOn": null
+   },
+   "contact": {
+       "doc_type": "contact",
+       "contactId": "FAKEFAKEFA",
+       "name": "FAKE name",
+       "address": "FAKEFAFAKEFAKEFAKKAKAKKAKFAKOOL",
+       "province_code": "S",
+       "district_code": "1",
+       "chiefdom_code": "1-14",
+       "phoneNo": "FAKEFAKEFAK",
+       "otherPhoneNo": "",
+       "instituteName": null,
+       "instituteType": null,
+       "createdBy": "FAKE",
+       "createdOn": "2011-12-20T07:43:14.866Z",
+       "modifiedBy": "FAKE",
+       "modifiedOn": "2011-12-23T09:46:24.116Z",
+       "callNature": "DEATH",
+       "callDetails": "DEATH",
+       "actionRequired": "FAKE FAKE FAKE FAKE",
+       "isPrankCall": false,
+       "caseStatus": null
+   },
+   "response": {
+       "caseStatus": "open"
+   }
+}

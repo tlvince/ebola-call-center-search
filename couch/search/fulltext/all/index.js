@@ -6,9 +6,9 @@ function index(doc) {
   // !code vendor/fields/field.js
   // this requires are using for test since this view cannot use commonjs modules
 
-  var Field = Field || require('../../couch/search/vendor/fields/field');
-  var lookup = lookup || require('../../couch/search/vendor/locations/lookup');
-  var tokenizer = tokenizer || require('../../couch/search/vendor/tokenizer/ngram');
+  var Field = Field || require('../../../couch/search/vendor/fields/field');
+  var lookup = lookup || require('../../../couch/search/vendor/locations/lookup');
+  var tokenizer = tokenizer || require('../../../couch/search/vendor/tokenizer/ngram');
 
   var ret = new Document();
   if (doc.doc_type !== 'case') {
@@ -34,7 +34,6 @@ function index(doc) {
             if (field.nGrammable()) {
               if (field.isLocation()) {
                 value = lookup.name(field.locationDepth(), value);
-                field = new Field(Field.normalizeLocationKey(key));
               }
               if (value !== 'undefined') {
                 value = tokenizer.allNGramPhrase(value, 2).join(' ');
@@ -53,6 +52,11 @@ function index(doc) {
           field = new Field(key);
           if (field.hasDateType()) {
             value = new Date(value);
+          } else if (field.isLocation()) {
+            value = lookup.name(field.locationDepth(), value);
+              if (value !== 'undefined') {
+                value = tokenizer.allNGramPhrase(value, 2).join(' ');
+              }
           }
           ret.add(value, {field: field.label(doc, objectKey), type: field.luceneType()});
           break;
@@ -60,7 +64,7 @@ function index(doc) {
       }
     }
   }
-  doc = lookup.addLocationKeys(doc);
+  doc = lookup.addLocationAndNormalizeKeys(doc);
   idx(doc);
   return ret;
 }

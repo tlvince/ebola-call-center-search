@@ -1,0 +1,50 @@
+{
+  "_id": "dfasdfasdfasdfasdfasdfasdfsadfsdfsds",
+  "_rev": "sdfasdfasdfasdfasdfasdfasdfasdf7fe",
+  "doc_type": "case",
+  "referenceNo": "dfasdfasdfadsfsfsadfsfds",
+  "contact": {
+    "doc_type": "contact",
+    "createdBy": "dfasdfasdfasa",
+    "createdOn": "2011-11-02T04:09:26.545Z",
+    "isPrankCall": false,
+    "name": "FAKE name",
+    "address": "FAKE address",
+    "adminDivision3": "undefined",
+    "phoneNo": "0000000000",
+    "callNature": "sick",
+    "callDetails": "undefined",
+    "adminDivision1": 1,
+    "adminDivision2": 7
+  },
+  "patient": {
+    "doc_type": "patient",
+    "status": "alive",
+    "patientName": "dfasdfasdfasdfsd",
+    "gender": "M",
+    "address": "dafsdfasdfsd",
+    "adminDivision3": "undefined",
+    "adminDivision1": 1,
+    "adminDivision2": 7,
+    "symptoms": {
+      "other": "",
+      "common": {
+        "fever": false,
+        "vomiting": false,
+        "diarrhea": false,
+        "weakness": true,
+        "muscleOrJointPain": false,
+        "bleeding": false,
+        "rash": false,
+        "abdominalPain": true,
+        "difficultySwallowing": false,
+        "headache": false,
+        "hiccup": false
+      }
+    }
+  },
+  "response": {
+    "doc_type": "response",
+    "caseStatus": "open"
+  }
+  }

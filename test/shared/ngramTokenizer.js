@@ -1,5 +1,5 @@
 var assert = require('assert');
-var tokenizer = require('../couch/search/vendor/tokenizer/ngram');
+var tokenizer = require('../../couch/search/vendor/tokenizer/ngram');
 var join = function(x) { return x.join(','); };
 
 describe('allNGram', function() {
@@ -7,7 +7,6 @@ describe('allNGram', function() {
     var nGram2 = tokenizer.nGram("hallo", 2);
     assert.equal(join(nGram2), join(['ha', 'al', 'll', 'lo']), JSON.stringify(nGram2));
   });
-
   it('generates all ngrams bigger than 1', function() {
     var nGram2 = tokenizer.allNGram("hallo", 2);
     assert.equal(join(nGram2), join(["ha", "al", "ll", "lo", "hal", "all", "llo", "hall", "allo", "hallo"]), JSON.stringify(nGram2));
