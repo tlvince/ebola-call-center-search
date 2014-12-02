@@ -1,6 +1,6 @@
 var assert = require('assert');
 var call = require('./examples/call/1.json')
-var Field = require('../couch/search/vendor/fields/field');
+var Field = require('../../couch/search/vendor/fields/field');
 
 describe('label', function() {
   it('replace dots with underscore', function() {
@@ -13,7 +13,7 @@ describe('label', function() {
     var res = field.label(call, 'patient');
     assert.equal(res,"patient_phoneno", JSON.stringify(res));
   });
-  it('replace unsercores', function() {
+  it('replace underscore', function() {
     var field = new Field('doc_type');
     var res = field.label(call);
     assert.equal(res,"contact_doctype", JSON.stringify(res));

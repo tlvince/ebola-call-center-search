@@ -21,7 +21,7 @@ module.exports = function(grunt) {
             'Gruntfile.js',
             'couch/search/fulltext/**/*.js'
             ]
-          }
+        }
       },
       json: {
         common: {
@@ -57,8 +57,8 @@ module.exports = function(grunt) {
           options: {
             position: 'bottom',
             banner: 'if( typeof(exports) === "object" ) {\n' +
-                    '  module.exports = <%=json.common.options.namespace%>;\n' +
-                    '}'
+              '  module.exports = <%=json.common.options.namespace%>;\n' +
+              '}'
           },
           files: {
             src: ['couch/search/vendor/locations/data.js']
@@ -67,12 +67,19 @@ module.exports = function(grunt) {
       },
 
       mochaTest: {
-        test: {
-          src: ['test/**/*.js']
+        common: {
+          src: ['test/shared/*.js']
+        },
+        sl: {
+          src: ['test/sl/*js', 'test/sl/e2e/*.js'].concat('<%= mochaTest.common.src %>')
+        },
+        lr: {
+          src: ['test/lr/*js', 'test/lr/e2e/*.js'].concat('<%= mochaTest.common.src %>')
+        },
+        gin: {
+          src: ['test/gin/*js', 'test/gin/e2e/*.js'].concat('<%= mochaTest.common.src %>')
         }
       }
-
-
   });
 
   grunt.registerTask('build', function(country) {
@@ -80,14 +87,25 @@ module.exports = function(grunt) {
     grunt.task.run('json:' + country);
   });
 
-  grunt.registerTask('test', function() {
-    grunt.task.run('mochaTest');
+  grunt.registerTask('test', function(country) {
+    if (!country) {
+      grunt.fail.warn('one country required: gin,sl,lr');
+    } else {
+      grunt.task.run('preparedTest:' + country);
+    }
   });
 
-  grunt.registerTask('default', [
-      'build',
-      'usebanner:dist',
-      'test',
-      'eslint'
-  ]);
+  grunt.registerTask('preparedTest', function(country) {
+    grunt.task.run(['build:' + country,
+        'usebanner:dist',
+        'mochaTest:' + country]);
+  });
+
+  grunt.registerTask('all', function(country) {
+    if (!country) {
+      grunt.fail.warn('one country required: gin,sl,lr');
+    } else {
+      grunt.task.run(['test:' + country, 'eslint']);
+    }
+  });
 };
