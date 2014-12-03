@@ -101,7 +101,8 @@ module.exports = function(grunt) {
       }
   });
 
-  grunt.registerTask('build', function(country) {
+  // builds the project with the localized location files
+  grunt.registerTask('build', 'builds the location files for a certain country', function(country) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
@@ -109,19 +110,16 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('test', function(country) {
+  // runs the localized tests
+  grunt.registerTask('test', 'tests the indexer for a certain country', function(country) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
-      grunt.task.run('preparedTest:' + country);
+      grunt.task.run(['build:' + country, 'mochaTest:' + country]);
     }
   });
 
-  grunt.registerTask('preparedTest', function(country) {
-    grunt.task.run(['build:' + country, 'mochaTest:' + country]);
-  });
-
-  grunt.registerTask('all', function(country) {
+  grunt.registerTask('all', 'tests and builds the location files for a certain country', function(country) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
