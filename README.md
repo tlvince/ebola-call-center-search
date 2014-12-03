@@ -19,7 +19,7 @@ The project uses the following tools:
 use the following command to see the available tasks:
 
 ```shell
-grunt test:[gin|sl|lr]
+grunt --help
 ```
 
 ### Test
@@ -36,7 +36,7 @@ Build is country dependant
 grunt build:[gin|sl|lr]
 ```
 
-upload the search document to the couchDB instance
+Upload the search document to the couchDB instance
 from the root of the project using couchapp:
 
 ```shell
@@ -44,17 +44,18 @@ cd couch/search && couchapp push "protocol://host:port/db_name"
 ```
 
 ### Bumping version
-Using the task
+
+Whenever we consider the version number should change we use the task:
 
 ```shell
 grunt bump
 ```
 
-We add the version number tag and commit the following files:
-- package.json
-- index functions
-- couchdb document id
+it will add the version number tag, add the version inline in the following files and commit them:
+- npm package `package.json`
+- index functions `couch/search/fulltext/all/index.js`
+- couchdb document id (i.e.) `couch/search/_id`
 
-This allows to decouple frontend from backend and being able to
+This allows to decouple frontend from backend. We are able to
 index a new index with breaking changes without breaking the frontend.
 Then frontend has to be updated once the new index is ready.
