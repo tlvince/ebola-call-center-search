@@ -1,3 +1,5 @@
+//@version 0.0.2;
+
 function index(doc) {
   'use strict';
   // couchapp imports

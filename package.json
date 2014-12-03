@@ -1,6 +1,6 @@
 {
   "name": "ebola-call-center-search",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Search implementation for the Ebola Call Center Application",
   "homepage": "https://sl-call-admin.eocng.org",
   "author": "eHealth Africa <http://ehealthafrica.org>",
@@ -15,7 +15,8 @@
     "time-grunt": "^1.0.0",
     "grunt-banner": "^0.2.3",
     "grunt-mocha-test": "^0.12.4",
-    "grunt-eslint": "^1.1.0"
+    "grunt-eslint": "^1.1.0",
+    "grunt-version": "^v0.3.0"
   },
   "scripts": {
     "test": "mocha"

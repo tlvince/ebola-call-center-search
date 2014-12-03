@@ -52,6 +52,15 @@ module.exports = function(grunt) {
         }
       },
 
+      version: {
+          options: {
+            prefix: '@version\\s*'
+          },
+          defaults: {
+            src: ['couch/search/fulltext/all/index.js']
+          }
+        },
+
       usebanner: {
         dist: {
           options: {
