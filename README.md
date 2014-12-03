@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/eHealthAfrica/ebola-call-center-search.svg?branch=sprintly%2Fitem%2F724)](https://travis-ci.org/eHealthAfrica/ebola-call-center-search)
+
 ebola-call-center-search
 ========================
 
