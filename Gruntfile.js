@@ -56,11 +56,11 @@ module.exports = function(grunt) {
       // updates version in files, and tags commit
       bump: {
         options: {
-          files: ['package.json', 'couch/search/fulltext/all/index.js'],
+          files: ['package.json', 'couch/search/fulltext/all/index.js', 'couch/search/_id'],
           updateConfigs: [],
           commit: true,
           commitMessage: 'Release v%VERSION%',
-          commitFiles: ['package.json', 'couch/search/fulltext/all/index.js'],
+          commitFiles: ['package.json', 'couch/search/fulltext/all/index.js', 'couch/search/_id'],
           createTag: true,
           tagName: 'v%VERSION%',
           tagMessage: 'Version %VERSION%',
