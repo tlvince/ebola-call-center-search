@@ -19,7 +19,7 @@
     "grunt-eslint": "^1.1.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "grunt test:sl && grunt test:gin && grunt test:lr"
   },
   "repository": {
     "type": "git",
