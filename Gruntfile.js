@@ -23,6 +23,7 @@ module.exports = function(grunt) {
             ]
         }
       },
+      // merges localized json in a js file
       json: {
         common: {
           options: {
@@ -52,15 +53,23 @@ module.exports = function(grunt) {
         }
       },
 
-      version: {
-          options: {
-            prefix: '@version\\s*'
-          },
-          defaults: {
-            src: ['couch/search/fulltext/all/index.js']
-          }
-        },
+      // updates version in files, and tags commit
+      bump: {
+        options: {
+          files: ['package.json', 'couch/search/fulltext/all/index.js'],
+          updateConfigs: [],
+          commit: true,
+          commitMessage: 'Release v%VERSION%',
+          commitFiles: ['package.json', 'couch/search/fulltext/all/index.js'],
+          createTag: true,
+          tagName: 'v%VERSION%',
+          tagMessage: 'Version %VERSION%',
+          push: false,
+          gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+        }
+      },
 
+      // adds code that makes the file a CommonJS module
       usebanner: {
         dist: {
           options: {
@@ -75,6 +84,7 @@ module.exports = function(grunt) {
         }
       },
 
+      // localized tests
       mochaTest: {
         common: {
           src: ['test/shared/*.js']
@@ -115,7 +125,7 @@ module.exports = function(grunt) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
-      grunt.task.run(['test:' + country, 'build:' + country, 'version', 'eslint']);
+      grunt.task.run(['test:' + country, 'build:' + country, 'eslint']);
     }
   });
 };
