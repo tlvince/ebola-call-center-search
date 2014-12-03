@@ -57,7 +57,7 @@ function index(doc) {
           if (field.hasDateType()) {
             value = new Date(value);
           } else if (field.isLocation()) {
-            value = lookup.name(field.locationDepth(), value);
+            value = lookup.adaptedName(field.locationDepth(), value);
               if (value !== 'undefined') {
                 value = tokenizer.allNGramPhrase(value, 2).join(' ');
               }

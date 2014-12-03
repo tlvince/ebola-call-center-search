@@ -19,26 +19,26 @@ var obj = {
 }
 
 
-describe('lookup.name', function() {
+describe('lookup.adaptedName', function() {
 
   it('finds the country', function() {
     assert.equal('sl', lookup.country);
   });
 
   it('finds the right name for code at level 0', function() {
-    var res = lookup.name(0, 'S', {});
+    var res = lookup.adaptedName(0, 'S', {});
     assert.equal(res, "south", res);
   });
 
   it('finds the right name for code at level 1', function() {
-    var res = lookup.name(1, '1', {});
+    var res = lookup.adaptedName(1, '1', {});
     assert.equal(res, "bo", res);
   });
 
   it('returns the id if no name found', function() {
     var id = "JNONE", res;
     [0,1,2].forEach(function(x) {
-      res = lookup.name(x, id, {});
+      res = lookup.adaptedName(x, id, {});
       assert.equal(res, id, res);
     });
   });
@@ -46,7 +46,7 @@ describe('lookup.name', function() {
   it('undefined property is returned as undefined', function() {
     var id = "undefined", res;
     [0,1,2].forEach(function(x) {
-      res = lookup.name(x, id, {});
+      res = lookup.adaptedName(x, id, {});
       assert.equal(res, id, res);
     });
   });
