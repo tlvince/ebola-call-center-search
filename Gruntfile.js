@@ -92,8 +92,11 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', function(country) {
-    country = country || 'gin';
-    grunt.task.run('json:' + country);
+    if (!country) {
+      grunt.fail.warn('one country required: gin,sl,lr');
+    } else {
+      grunt.task.run(['json:' + country, 'usebanner:dist']);
+    }
   });
 
   grunt.registerTask('test', function(country) {
@@ -105,16 +108,14 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('preparedTest', function(country) {
-    grunt.task.run(['build:' + country,
-        'usebanner:dist',
-        'mochaTest:' + country]);
+    grunt.task.run(['build:' + country, 'mochaTest:' + country]);
   });
 
   grunt.registerTask('all', function(country) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
-      grunt.task.run(['test:' + country, 'eslint']);
+      grunt.task.run(['test:' + country, 'build:' + country, 'version', 'eslint']);
     }
   });
 };
