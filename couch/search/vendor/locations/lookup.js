@@ -2,8 +2,6 @@
 
 var locations = locations || require('./data');
 
-var country;
-
 // normalization mapping for location keys
 var mapping = {
   adminDivision1: "adminDivision1",
@@ -17,6 +15,9 @@ var mapping = {
   chiefdom_code:  "adminDivision3"
 };
 
+// @param a {Object}.
+// @param b {Object}.
+// @return {Objext} extended a with values and keys in b;
 var extend = function(a, b) {
   for (var key in b) {
     a[key] = b[key];
@@ -24,7 +25,9 @@ var extend = function(a, b) {
   return a;
 };
 
-// normalizes an object with correct keys
+// normalizes object with location keys
+// @return {Objext} that has normalized keys
+// i.e. one of adminDivision[1,2,3]
 var normalize = function(a) {
   //normalization function for keys
   var normalizeLocationKey = function(key) {
@@ -39,6 +42,13 @@ var normalize = function(a) {
   return a;
 };
 
+// @param  {Integer} depth of the location.
+// @param  {String, Integer} the id of the location.
+// @return {String, Integer} the location name or the passed
+// id parameter if no location name was found or if the depth was
+// beyond current locations depth
+// Locations ids are currently of the form:
+// 1, '1', '01', 'DA', N'
 var name = function(depth, id) {
     if (depth > locations.data.length - 1) {
       return id;
@@ -51,6 +61,8 @@ var name = function(depth, id) {
     }
 };
 
+// one of gin(Guinea), sl(Sierra Leona), lr(Liberia)
+// which country is the location file from.
 var country = function() {
     var res;
     if (name(0,'C') === "conakry") {
@@ -63,10 +75,13 @@ var country = function() {
     return res;
 }();
 
-//normalizes cases for sierra leona
-//level 2, '01' --> '1'
-//level 3, 'n' -->  level2 + level3(padded with 0)
-var processAdminDivision2 = function(id) {
+// adapts location id value sierra leona at level 2
+// @param id {String} the id of the location.
+// @return {String} with following mappings:
+//    '01' --> '1'
+//    'undefined' --> 'undefined'
+//    'not a number' -> 'not a number'
+var adaptSLAdminDivision2 = function(id) {
   var res = id;
   if (id !== 'undefined') {
     res = (parseInt(id, 10)).toString();
@@ -77,6 +92,8 @@ var processAdminDivision2 = function(id) {
   return res;
 }
 
+// @param id {String} the id of the location is \d\d or \d.
+// @return {String} padded digit with 0 in case of \d.
 var pad = function(id) {
   var res = id;
   if (id.length === 1) {
@@ -85,24 +102,32 @@ var pad = function(id) {
   return res;
 }
 
-var processAdminDivision3 = function(level2, level3) {
-  var res, regex = /^\d{1,2}$/; //at least one digit at most two
-  if (level3.match(regex) && level2.match(regex)) {
-    res = processAdminDivision2(level2) + "-" + pad(level3);
+// adapts location id value for SL at level 3
+// @param level2Id {String} the id of the location al level 2.
+// @param level3Id {String} the id of the location al level 3.
+// @return {String} in the form '\d - \d\d' iff level2Id and level3Id are matching a certain digit regex. Returns level3Id otherwise.
+var adaptSLAdminDivision3 = function(level2Id, level3Id) {
+  var regex = /^\d{1,2}$/, res; //at least one digit at most two
+  if (level3Id.match(regex) && level2Id.match(regex)) {
+    res = adaptSLAdminDivision2(level2Id) + "-" + pad(level3Id);
   } else {
-    res = level3;
+    res = level3Id;
   }
   return res;
 }
 
+// wrapper around name function to adapt for SL exception location ids case
+// @param depth {Integer} depth of the location.
+// @param id {String, Integer} the id of the location.
+// @param obj {Object} the object parent of the location.
 var adaptedName = function(depth, id, obj) {
   if (country === 'sl') {
     switch(depth) {
       case 1:
-        id = processAdminDivision2(id)
+        id = adaptSLAdminDivision2(id)
         break;
       case 2:
-        id = processAdminDivision3(processAdminDivision2(obj.adminDivision2), id)
+        id = adaptSLAdminDivision3(adaptSLAdminDivision2(obj.adminDivision2), id)
         break;
       default:
         break;
@@ -113,7 +138,6 @@ var adaptedName = function(depth, id, obj) {
 
 var lookup = {
   adaptedName: adaptedName,
-  name: adaptedName,
   // ad location keys in case they are missing and normalizes them
   addLocationAndNormalizeKeys: function(aDoc) {
     var keys = ["contact", "patient", "response"]
