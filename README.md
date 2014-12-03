@@ -59,3 +59,64 @@ it will add the version number tag, add the version inline in the following file
 This allows to decouple frontend from backend. We are able to
 index a new index with breaking changes without breaking the frontend.
 Then frontend has to be updated once the new index is ready.
+
+
+### Location management
+
+There is a normalized version for location keys which has the following structure
+
+        {
+            "patient": {
+                "chiefdomCode": "undefined",
+                "districtCode": "undefined",
+                "provinceCode": "undefined"
+            },
+            "contact": {
+                "chiefdom_code": "undefined",
+                "district_code": "undefined",
+                "province_code": "undefined"
+            },
+            "response": {
+                "chiefdomCode": "undefined",
+                "districtCode": "undefined",
+                "provinceCode": "undefined"
+            }
+        }
+
+
+        {
+            "patient": {
+                "chiefdomCode": "undefined",
+                "districtCode": "undefined",
+                "provinceCode": "undefined"
+            },
+            "contact": {
+                "chiefdom_code": "undefined",
+                "district_code": "undefined",
+                "province_code": "undefined"
+            },
+            "response": {
+                "chiefdomCode": "undefined",
+                "districtCode": "undefined",
+                "provinceCode": "undefined"
+            }
+        }
+        {
+            "patient": {
+                "chiefdomCode": "undefined",
+                "districtCode": "undefined",
+                "provinceCode": "undefined"
+            },
+            "contact": {
+                "chiefdom_code": "undefined",
+                "district_code": "undefined",
+                "province_code": "undefined"
+            },
+            "response": {
+                "chiefdomCode": "undefined",
+                "districtCode": "undefined",
+                "provinceCode": "undefined"
+            }
+        }
+
+
