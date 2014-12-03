@@ -1,6 +1,6 @@
 {
   "name": "ebola-call-center-search",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Search implementation for the Ebola Call Center Application",
   "homepage": "https://sl-call-admin.eocng.org",
   "author": "eHealth Africa <http://ehealthafrica.org>",
@@ -10,15 +10,16 @@
   "devDependencies": {
     "grunt-json": "^0.1.3",
     "mocha": "~1.21.5",
-    "locations": "eHealthAfrica/locations#1.1.1",
+    "locations": "eHealthAfrica/locations#1.1.2",
     "load-grunt-tasks": "^0.6.0",
     "time-grunt": "^1.0.0",
     "grunt-banner": "^0.2.3",
+    "grunt-bump": "^0.0.16",
     "grunt-mocha-test": "^0.12.4",
     "grunt-eslint": "^1.1.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "grunt test:sl && grunt test:gin && grunt test:lr"
   },
   "repository": {
     "type": "git",

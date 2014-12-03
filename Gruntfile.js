@@ -23,6 +23,7 @@ module.exports = function(grunt) {
             ]
         }
       },
+      // merges localized json in a js file
       json: {
         common: {
           options: {
@@ -52,6 +53,23 @@ module.exports = function(grunt) {
         }
       },
 
+      // updates version in files, and tags commit
+      bump: {
+        options: {
+          files: ['package.json', 'couch/search/fulltext/all/index.js', 'couch/search/_id'],
+          updateConfigs: [],
+          commit: true,
+          commitMessage: 'Release v%VERSION%',
+          commitFiles: ['package.json', 'couch/search/fulltext/all/index.js', 'couch/search/_id'],
+          createTag: true,
+          tagName: 'v%VERSION%',
+          tagMessage: 'Version %VERSION%',
+          push: false,
+          gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+        }
+      },
+
+      // adds code that makes the file a CommonJS module
       usebanner: {
         dist: {
           options: {
@@ -66,6 +84,7 @@ module.exports = function(grunt) {
         }
       },
 
+      // localized tests
       mochaTest: {
         common: {
           src: ['test/shared/*.js']
@@ -82,30 +101,29 @@ module.exports = function(grunt) {
       }
   });
 
-  grunt.registerTask('build', function(country) {
-    country = country || 'gin';
-    grunt.task.run('json:' + country);
-  });
-
-  grunt.registerTask('test', function(country) {
+  // builds the project with the localized location files
+  grunt.registerTask('build', 'builds the location files for a certain country', function(country) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
-      grunt.task.run('preparedTest:' + country);
+      grunt.task.run(['json:' + country, 'usebanner:dist']);
     }
   });
 
-  grunt.registerTask('preparedTest', function(country) {
-    grunt.task.run(['build:' + country,
-        'usebanner:dist',
-        'mochaTest:' + country]);
-  });
-
-  grunt.registerTask('all', function(country) {
+  // runs the localized tests
+  grunt.registerTask('test', 'tests the indexer for a certain country', function(country) {
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {
-      grunt.task.run(['test:' + country, 'eslint']);
+      grunt.task.run(['build:' + country, 'mochaTest:' + country]);
+    }
+  });
+
+  grunt.registerTask('all', 'tests and builds the location files for a certain country', function(country) {
+    if (!country) {
+      grunt.fail.warn('one country required: gin,sl,lr');
+    } else {
+      grunt.task.run(['test:' + country, 'build:' + country, 'eslint']);
     }
   });
 };

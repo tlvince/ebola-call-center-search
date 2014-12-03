@@ -1,3 +1,5 @@
+// "version": "0.0.4"
+
 function index(doc) {
   'use strict';
   // couchapp imports
@@ -35,7 +37,7 @@ function index(doc) {
             value = foldToASCII(obj[key].trim());
             if (field.nGrammable()) {
               if (field.isLocation()) {
-                value = lookup.name(field.locationDepth(), value);
+                value = lookup.adaptedName(field.locationDepth(), value, obj);
               }
               if (value !== 'undefined') {
                 value = tokenizer.allNGramPhrase(value, 2).join(' ');
@@ -55,7 +57,7 @@ function index(doc) {
           if (field.hasDateType()) {
             value = new Date(value);
           } else if (field.isLocation()) {
-            value = lookup.name(field.locationDepth(), value);
+            value = lookup.adaptedName(field.locationDepth(), value);
               if (value !== 'undefined') {
                 value = tokenizer.allNGramPhrase(value, 2).join(' ');
               }
