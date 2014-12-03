@@ -2,6 +2,7 @@
 
 var locations = locations || require('./data');
 
+var country;
 
 // normalization mapping for location keys
 var mapping = {
@@ -36,10 +37,9 @@ var normalize = function(a) {
     }
   });
   return a;
-}
+};
 
-var lookup = {
-  name: function (depth, id) {
+var name = function(depth, id) {
     if (depth > locations.data.length - 1) {
       return id;
     }
@@ -49,8 +49,71 @@ var lookup = {
     } else {
       return id;
     }
-  },
+};
 
+var country = function() {
+    var res;
+    if (name(0,'C') === "conakry") {
+      res = 'gin';
+    } else if (name(1,'1') === "bo") {
+      res = 'sl';
+    } else {
+      res = 'lr';
+    }
+    return res;
+}();
+
+//normalizes cases for sierra leona
+//level 2, '01' --> '1'
+//level 3, 'n' -->  level2 + level3(padded with 0)
+var processAdminDivision2 = function(id) {
+  var res = id;
+  if (id !== 'undefined') {
+    res = (parseInt(id, 10)).toString();
+    if (res === 'NaN') {
+      res = id;
+    }
+  }
+  return res;
+}
+
+var pad = function(id) {
+  var res = id;
+  if (id.length === 1) {
+    res = "0" + id;
+  }
+  return res;
+}
+
+var processAdminDivision3 = function(level2, level3) {
+  var res, regex = /^\d{1,2}$/; //at least one digit at most two
+  if (level3.match(regex) && level2.match(regex)) {
+    res = processAdminDivision2(level2) + "-" + pad(level3);
+  } else {
+    res = level3;
+  }
+  return res;
+}
+
+var adaptedName = function(depth, id, obj) {
+  if (country === 'sl') {
+    switch(depth) {
+      case 1:
+        id = processAdminDivision2(id)
+        break;
+      case 2:
+        id = processAdminDivision3(processAdminDivision2(obj.adminDivision2), id)
+        break;
+      default:
+        break;
+    }
+  }
+  return name(depth, id);
+}
+
+var lookup = {
+  adaptedName: adaptedName,
+  name: adaptedName,
   // ad location keys in case they are missing and normalizes them
   addLocationAndNormalizeKeys: function(aDoc) {
     var keys = ["contact", "patient", "response"]
@@ -62,7 +125,10 @@ var lookup = {
     });
     return aDoc;
   },
+  country: country
 };
+
+
 
 if( typeof(exports) === 'object' ) {
   module.exports = lookup;

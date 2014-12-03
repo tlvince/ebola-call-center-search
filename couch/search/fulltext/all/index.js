@@ -35,7 +35,7 @@ function index(doc) {
             value = foldToASCII(obj[key].trim());
             if (field.nGrammable()) {
               if (field.isLocation()) {
-                value = lookup.name(field.locationDepth(), value);
+                value = lookup.adaptedName(field.locationDepth(), value, obj);
               }
               if (value !== 'undefined') {
                 value = tokenizer.allNGramPhrase(value, 2).join(' ');

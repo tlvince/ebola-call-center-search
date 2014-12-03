@@ -3,6 +3,10 @@ var lookup = require('../../couch/search/vendor/locations/lookup');
 
 describe('lookup.name', function() {
 
+  it('finds the country', function() {
+    assert.equal('lr', lookup.country);
+  });
+
   it('finds the right name for code at level 0', function() {
     var res = lookup.name(0, 1);
     assert.equal(res, "montserrado", res);
