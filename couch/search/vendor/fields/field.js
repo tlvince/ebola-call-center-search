@@ -9,8 +9,8 @@ var traverse = traverse || require('./js-traverse');
 // @param key {String} the couchdDB key.
 var Field = function(key) {
   var locationKeys = ['adminDivision'];
-  // regex template for that fields could be turned into nGrams
-  var nGrammable = ['name', 'phone', 'address'].concat(locationKeys);
+  // regex template for fields that could be turned into nGrams
+  var nGrammable = ['name', 'phone', 'address'];
   // regex template for some fields are not indexable
   var notIndexable = ['timestamp', 'changeLog'];
 

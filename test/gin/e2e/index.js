@@ -21,13 +21,13 @@ describe('index', function() {
 
   it('indexes contact_admindivision1 as labeled location', function() {
     var indexed = res.internal.contact_admindivision1.value;
-    expected = "co on na ak kr ry con ona nak akr kry cona onak nakr akry conak onakr nakry conakr onakry conakry";
+    expected = "conakry";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 
   it('indexes contact_admindivision2 as labeled location', function() {
     var indexed = res.internal.contact_admindivision2.value;
-    expected = "co on na ak kr ry con ona nak akr kry cona onak nakr akry conak onakr nakry conakr onakry conakry";
+    expected = "conakry";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 
