@@ -1,4 +1,4 @@
-// "version": "0.0.4"
+// "version": "0.0.5"
 
 function index(doc) {
   'use strict';
@@ -35,13 +35,10 @@ function index(doc) {
           field = new Field(key);
           if (field.indexable()) {
             value = foldToASCII(obj[key].trim());
-            if (field.nGrammable()) {
-              if (field.isLocation()) {
-                value = lookup.adaptedName(field.locationDepth(), value, obj);
-              }
-              if (value !== 'undefined') {
-                value = tokenizer.allNGramPhrase(value, 2).join(' ');
-              }
+            if (field.isLocation()) {
+              value = lookup.adaptedName(field.locationDepth(), value, obj);
+            } else if (field.nGrammable() && value !== 'undefined') {
+              value = tokenizer.allNGramPhrase(value, 2).join(' ');
             } else if (field.hasDateType()) {
               value = new Date(value);
             }
@@ -58,9 +55,6 @@ function index(doc) {
             value = new Date(value);
           } else if (field.isLocation()) {
             value = lookup.adaptedName(field.locationDepth(), value);
-              if (value !== 'undefined') {
-                value = tokenizer.allNGramPhrase(value, 2).join(' ');
-              }
           }
           ret.add(value, {field: field.label(doc, objectKey), type: field.luceneType()});
           break;

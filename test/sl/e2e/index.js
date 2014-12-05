@@ -21,7 +21,7 @@ describe('index', function() {
 
   it('indexes contact_admindivision1 as labeled location', function() {
     var indexed = res.internal.contact_admindivision1.value;
-    expected = "so ou ut th sou out uth sout outh south";
+    expected = "south";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 

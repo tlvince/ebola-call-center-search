@@ -21,13 +21,13 @@ describe('index', function() {
 
   it('indexes contact_admindivision1 as labeled location', function() {
     var indexed = res.internal.contact_admindivision1.value;
-    expected = "mo on nt ts se er rr ra ad do mon ont nts tse ser err rra rad ado mont onts ntse tser serr erra rrad rado monts ontse ntser tserr serra errad rrado montse ontser ntserr tserra serrad errado montser ontserr ntserra tserrad serrado montserr ontserra ntserrad tserrado montserra ontserrad ntserrado montserrad ontserrado montserrado";
+    expected = "montserrado";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 
   it('indexes contact_admindivision2 as labeled location', function() {
     var indexed = res.internal.contact_admindivision2.value;
-    expected = "Di is st tr ri ic ct Dis ist str tri ric ict Dist istr stri tric rict Distr istri stric trict Distri istric strict Distric istrict District #7"
+    expected = "District #7";
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 
