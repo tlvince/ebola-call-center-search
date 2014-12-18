@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       // updates version in files, and tags commit
       bump: {
         options: {
-          files: ['package.json', 'couch/search/fulltext/all/index.js', 'couch/search/_id'],
+          files: ['bower.json', 'package.json', 'couch/search/fulltext/all/index.js', 'couch/search/_id'],
           updateConfigs: [],
           commit: true,
           commitMessage: 'Release v%VERSION%',
@@ -103,6 +103,8 @@ module.exports = function(grunt) {
 
   // builds the project with the localized location files
   grunt.registerTask('build', 'builds the location files for a certain country', function(country) {
+    grunt.file.copy('node_modules/traverse/index.js', 'couch/search/vendor/fields/js-traverse.js');
+    grunt.file.copy('bower_components/fold-to-ascii-js/fold-to-ascii.js', 'couch/search/vendor/analyzers/fold_to_ascii.js');
     if (!country) {
       grunt.fail.warn('one country required: gin,sl,lr');
     } else {

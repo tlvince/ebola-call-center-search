@@ -1,0 +1,19 @@
+{
+  "name": "dashboard-search",
+  "version": "0.0.2",
+  "description": "Dashboard search",
+  "homepage": "https://github.com/eHealthAfrica/dashboard-search",
+  "authors": [
+    "eHealth Africa <http://ehealthafrica.org>"
+  ],
+  "license": "Apache 2.0",
+  "private": false,
+  "dependencies": {
+    "fold-to-ascii-js": "https://github.com/mplatt/fold-to-ascii-js.git#1.1"
+  },
+  "keywords": [
+    "search",
+    "dashboard",
+    "ehealth"
+  ]
+}

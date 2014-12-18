@@ -9,6 +9,7 @@ globals:
   tokenizer: true
   lookup: true
   version: true
+  foldToASCII: true
 rules:
   quotes:
     - 2
