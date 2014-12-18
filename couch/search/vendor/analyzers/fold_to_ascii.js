@@ -1,41 +1,40 @@
 /**
  * fold-to-ascii.js
- * https://github.com/mplatt/fold-to-ascii-js
- *
+ * 
  * This is a JavaScript port of the Apache Lucene ASCII Folding Filter.
- *
+ * 
  * The Apache Lucene ASCII Folding Filter is licensed to the Apache Software
  * Foundation (ASF) under one or more contributor license agreements. See the
  * NOTICE file distributed with this work for additional information regarding
  * copyright ownership. The ASF licenses this file to You under the Apache
  * License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- *
+ * 
  * This port uses an example from the Mozilla Developer Network published prior
  * to August 20, 2010
- *
+ * 
  * fixedCharCodeAt is licencesed under the MIT License (MIT)
- *
+ * 
  * Copyright (c) 2013 Mozilla Developer Network and individual contributors
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -62,7 +61,7 @@
 		if (inStr === null) {
 			return "";
 		}
-
+		
 		/*
 		 * The array of characters or character combinations to output
 		 */
@@ -70,7 +69,7 @@
 
 		for (var i = 0; i < inStr.length; i++) {
 			var charCode = fixedCharCodeAt(inStr, i);
-
+			
 			/*
 			 * Skip low surrogates
 			 */
@@ -93,7 +92,7 @@
 
 		return outStr;
 	};
-
+	
 	var fixedCharCodeAt = function(str, idx) {
 		/*
 		 * ex. fixedCharCodeAt ('\uD800\uDC00', 0); // 65536
@@ -102,7 +101,7 @@
 		idx = idx || 0;
 		var code = str.charCodeAt(idx);
 		var hi, low;
-
+		
 		/*
 		 * High surrogate (could change last hex to 0xDB7F to treat high
 		 * private surrogates as single characters)
@@ -2049,11 +2048,7 @@
 				outString += (replaceUnmapped ? defaultString : String.fromCharCode(charCode));
 				break;
 		}
-
+		
 		return outString;
 	};
 }());
-
-if( typeof(exports) === "object" ) {
-  module.exports = foldToASCII;
-}

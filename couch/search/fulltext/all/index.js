@@ -2,6 +2,9 @@
 
 function index(doc) {
   'use strict';
+  // to make CommonJS modules compatible with
+  // couchapp import directives
+  var module = module || {};
   // couchapp imports
   // !code vendor/tokenizer/ngram.js
   // !code vendor/locations/lookup.js
@@ -12,7 +15,9 @@ function index(doc) {
   var Field = Field || require('../../../couch/search/vendor/fields/field');
   var lookup = lookup || require('../../../couch/search/vendor/locations/lookup');
   var tokenizer = tokenizer || require('../../../couch/search/vendor/tokenizer/ngram');
-  var foldToASCII = foldToASCII || require('../../../couch/search/vendor/analyzers/fold_to_ascii');
+  if (typeof foldToASCII === 'undefined') {
+    require('../../../couch/search/vendor/analyzers/fold_to_ascii');
+  }
 
   var ret = new Document();
   if (doc.doc_type !== 'case') {
