@@ -13,10 +13,13 @@ describe('index', function() {
     assert.equal(indexed, expected, JSON.stringify(indexed));
   });
 
-  it('indexes contact.createdOn as ngrams', function() {
+  it('indexes contact.name as ngrams', function() {
     var indexed = res.internal.contact_name.value;
-    expected = "ee ee es so om me en na am me eee ees eso som ome men ena nam ame eees eeso esom some omen mena enam name eeeso eesom esome somen omena menam ename eeesom eesome esomen somena omenam mename eeesome eesomen esomena somenam omename eeesomen eesomena esomenam somename eeesomena eesomenam esomename eeesomenam eesomename eeesomename"
+    var analyzer = res.internal.contact_name.analyzer;
+    expected = "eeesomename";
+    var expectedAnalyzer = "ngram:{\"min\":2,\"max\":3}";
     assert.equal(indexed, expected, JSON.stringify(indexed));
+    assert.equal(analyzer, expectedAnalyzer, JSON.stringify(analyzer));
   });
 
   it('indexes contact_admindivision1 as labeled location', function() {
@@ -39,7 +42,10 @@ describe('index', function() {
 
   it('ascii folds', function() {
     var indexed = res.internal.contact_name.value;
-    expected = "ee ee es so om me en na am me eee ees eso som ome men ena nam ame eees eeso esom some omen mena enam name eeeso eesom esome somen omena menam ename eeesom eesome esomen somena omenam mename eeesome eesomen esomena somenam omename eeesomen eesomena esomenam somename eeesomena eesomenam esomename eeesomenam eesomename eeesomename";
+    var analyzer = res.internal.contact_name.analyzer;
+    expected = "eeesomename"
+    var expectedAnalyzer = "ngram:{\"min\":2,\"max\":3}";
     assert.equal(indexed, expected, JSON.stringify(indexed));
+    assert.equal(analyzer, expectedAnalyzer, JSON.stringify(analyzer));
   });
 });

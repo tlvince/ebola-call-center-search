@@ -15,8 +15,11 @@ describe('index', function() {
 
   it('indexes contact.createdOn as ngrams', function() {
     var indexed = res.internal.contact_name.value;
-    expected = "FA AK KE FAK AKE FAKE na am me nam ame name";
+    var analyzer = res.internal.contact_name.analyzer;
+    expected = "FAKE name";
+    expectedAnalyzer = "ngram:{\"min\":2,\"max\":3}";
     assert.equal(indexed, expected, JSON.stringify(indexed));
+    assert.equal(analyzer, expectedAnalyzer, JSON.stringify(analyzer));
   });
 
   it('indexes contact_admindivision1 as labeled location', function() {

@@ -1,4 +1,4 @@
-// "version": "0.1.0"
+// "version": "0.1.1"
 
 function index(doc) {
   'use strict';
@@ -6,7 +6,6 @@ function index(doc) {
   // couchapp import directives
   var module = module || {};
   // couchapp imports
-  // !code vendor/tokenizer/ngram.js
   // !code vendor/locations/lookup.js
   // !code vendor/fields/field.js
   // !code vendor/analyzers/fold_to_ascii.js
@@ -14,7 +13,6 @@ function index(doc) {
 
   var Field = Field || require('../../../couch/search/vendor/fields/field');
   var lookup = lookup || require('../../../couch/search/vendor/locations/lookup');
-  var tokenizer = tokenizer || require('../../../couch/search/vendor/tokenizer/ngram');
   if (typeof foldToASCII === 'undefined') {
     require('../../../couch/search/vendor/analyzers/fold_to_ascii');
   }
@@ -42,15 +40,16 @@ function index(doc) {
             value = foldToASCII(obj[key].trim());
             if (field.isLocation()) {
               value = lookup.adaptedName(field.locationDepth(), value, obj);
-            } else if (field.nGrammable() && value !== 'undefined') {
-              value = tokenizer.allNGramPhrase(value, 2).join(' ');
             } else if (field.hasDateType()) {
               value = new Date(value);
             }
-            ret.add(value, {field: field.label(doc, objectKey), type: field.luceneType()});
-            ret.add(value, {type: field.luceneType()});
-          }  else {
-            return null;
+            if (field.nGrammable() && value !== 'undefined') {
+              ret.add(value, {field: field.label(doc, objectKey), type: field.luceneType(), analyzer:"ngram:{\"min\":2,\"max\":3}"});
+              ret.add(value, {type: field.luceneType(), analyzer:"ngram:{\"min\":2,\"max\":3}"});
+            }  else {
+              ret.add(value, {field: field.label(doc, objectKey), type: field.luceneType()});
+              ret.add(value, {type: field.luceneType()});
+            }
           }
           break;
         default:
