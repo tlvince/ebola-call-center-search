@@ -6,7 +6,8 @@ var Document = module.exports = function() {
       this.internal[y.field] = {
         value: x,
         field: y.field || "default",
-        type: y.type
+        type: y.type,
+        analyzer: y.analyzer
       };
     }
   };
