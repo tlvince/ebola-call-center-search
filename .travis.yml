@@ -3,5 +3,6 @@ node_js:
   - "0.11"
   - "0.10"
 before_script:
+  - echo "machine github.com login $CI_USER_TOKEN" >> ~/.netrc
   - npm install -g grunt-cli bower
   - bower install
